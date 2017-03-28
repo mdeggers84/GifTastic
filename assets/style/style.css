@@ -1,0 +1,12 @@
+body {
+	color: #fff;
+	background: #333;
+}
+
+.gif {
+	border: 5px solid #fff;
+}
+
+.gif-button {
+	margin: 5px;
+}
