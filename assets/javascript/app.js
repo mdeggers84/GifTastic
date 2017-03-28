@@ -34,6 +34,7 @@ $(document).ready(function() {
 				var animated = results[i].images.fixed_height.url;
 				var rating = results[i].rating;
 
+				// created divs for each gif to utilize bootstrap
 				var $newDiv = $("<div>").attr("class", "gif-div col-md-4 col-xs-12")
 					.attr("id", "gif-" + i);
 				var $img = $("<img>").attr("src", still)
@@ -53,11 +54,13 @@ $(document).ready(function() {
 		});
 	}
 
+	// adds new keyword to array
 	$("#addGif").on("click", function(event) {
 		event.preventDefault();
 
 		var newGif = $("#gif-input").val().trim();
 
+		// prevents addition of blank buttons
 		if (newGif !== "") {
 			$("#gif-input").val("");
 
@@ -66,12 +69,14 @@ $(document).ready(function() {
 		}
 	});
 
+	// listens for buttons with .gif-button class
 	$(document).on("click", ".gif-button", function() {
 		var keyword = $(this).attr("data-attr");
 
 		getGiphy(keyword);
 	});
 
+	// animates / stills gifs on click
 	$(document).on("click", ".gif", function() {
 		if ($(this).attr("state") === "still") {
 			$(this).attr("state", "animated");
@@ -110,9 +115,7 @@ $(document).ready(function() {
 					.prepend($cap);
 				
 				$cap.html("SURPRISE!");
-
 		});
-
 
 	});
 
