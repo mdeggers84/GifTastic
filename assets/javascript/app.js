@@ -1,8 +1,10 @@
 $(document).ready(function() {
-
+	// keyword array
 	var gifArr = ["Futurama", "The Simpsons", "Family Guy", "Doug", "Rugrats", "Rocko's Modern Life",
-	"Boy Meets World", "Underdog"];
+	"Underdog", "Hey Arnold", "Batman Beyond", "Animaniacs", "Archer", "Johnny Quest",
+	"Johnny Bravo"];
 	
+	// loops through array to create buttons; clears div first to prevent repeats
 	function createBtns() {
 		$("#gif-buttons").empty();
 
@@ -15,6 +17,7 @@ $(document).ready(function() {
 		}
 	}
 
+	// grabs gifs from giphy based on passed keyword parameter
 	function getGiphy(keyword) {
 		var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + keyword + "&limit=10&api_key=dc6zaTOxFJmzC";
 
@@ -31,7 +34,7 @@ $(document).ready(function() {
 				var animated = results[i].images.fixed_height.url;
 				var rating = results[i].rating;
 
-				var $newDiv = $("<div>").attr("class", "gif-div col-lg-4 col-md-6 col-xs-12")
+				var $newDiv = $("<div>").attr("class", "gif-div col-md-4 col-xs-12")
 					.attr("id", "gif-" + i);
 				var $img = $("<img>").attr("src", still)
 					.attr("alt", "gif")

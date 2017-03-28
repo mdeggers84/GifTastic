@@ -1,25 +1,24 @@
 body {
-	color: #fff;
-	background: #26268b;
+	color: #d3d3d3;
+	background: #28407c;
 }
 
 .gif {
-	border: 5px solid #fff;
+	border: 5px solid #d3d3d3;
 }
 
-.gif-button {
+.btn-default {
 	margin: 5px;
-}
-
-.gif-div {
-	display: inline;
+	background: #d3d3d3;
+	color: #28407c;
 }
 
 #gif-input {
+	border-radius: 5px;
 	color: #010101;
 }
 
 #click-me {
-	color: #26268b;
+	color: #28407c;
 	cursor: pointer;
 }
