@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	var gifArr = ["sloth", "Futurama", "The Simpsons", "Family Guy", "Doug", "Rugrats", "Rocko's Modern Life",
+	var gifArr = ["Futurama", "The Simpsons", "Family Guy", "Doug", "Rugrats", "Rocko's Modern Life",
 	"Boy Meets World", "Underdog"];
 	
 	function createBtns() {
@@ -27,14 +27,25 @@ $(document).ready(function() {
 			var results = response.data;
 			
 			for (var i = 0; i < results.length; i++) {
-				var gif = results[i].images.fixed_height.url;
+				var still = results[i].images.fixed_height_still.url;
+				var animated = results[i].images.fixed_height.url;
 				var rating = results[i].rating;
 
-				var $img = $("<img>").attr("src", gif)
+				var $newDiv = $("<div>").attr("class", "gif-div col-lg-4 col-md-6 col-xs-12")
+					.attr("id", "gif-" + i);
+				var $img = $("<img>").attr("src", still)
 					.attr("alt", "gif")
-					.attr("class", "gif");
+					.attr("class", "gif")
+					.attr("animated", animated)
+					.attr("still", still)
+					.attr("state", "still");
+				var $cap = $("<h4>");
 
-				$("#gifs").append($img);
+				$("#gifs").append($newDiv);
+				$newDiv.append($img)
+					.prepend($cap);
+
+				$cap.html("Rating: " + rating);
 			}
 		});
 	}
@@ -56,6 +67,50 @@ $(document).ready(function() {
 		var keyword = $(this).attr("data-attr");
 
 		getGiphy(keyword);
+	});
+
+	$(document).on("click", ".gif", function() {
+		if ($(this).attr("state") === "still") {
+			$(this).attr("state", "animated");
+			$(this).attr("src", $(this).attr("animated"));
+		} else {
+			$(this).attr("state", "still");
+			$(this).attr("src", $(this).attr("still"));
+		}
+	});
+
+	$("#click-me").on("click", function() {
+		var queryURL = "http://api.giphy.com/v1/gifs/3NtY188QaxDdC?api_key=dc6zaTOxFJmzC";
+
+		$("#gifs").empty();
+
+		$.ajax({
+			url: queryURL,
+			method: "GET"
+		}).done(function(response) {
+			console.log(response);
+				var results = response.data;
+				var still = results.images.original_still.url;
+				var animated = results.images.original.url;
+
+				var $newDiv = $("<div>").attr("class", "gif-div col-xs-12");
+				var $img = $("<img>").attr("src", still)
+					.attr("alt", "gif")
+					.attr("class", "gif")
+					.attr("animated", animated)
+					.attr("still", still)
+					.attr("state", "still");
+				var $cap = $("<h2>");
+
+				$("#gifs").append($newDiv);
+				$newDiv.append($img)
+					.prepend($cap);
+				
+				$cap.html("SURPRISE!");
+
+		});
+
+
 	});
 
 	createBtns();

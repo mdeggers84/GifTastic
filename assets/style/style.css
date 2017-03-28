@@ -1,6 +1,6 @@
 body {
 	color: #fff;
-	background: #333;
+	background: #26268b;
 }
 
 .gif {
@@ -9,4 +9,17 @@ body {
 
 .gif-button {
 	margin: 5px;
+}
+
+.gif-div {
+	display: inline;
+}
+
+#gif-input {
+	color: #010101;
+}
+
+#click-me {
+	color: #26268b;
+	cursor: pointer;
 }
