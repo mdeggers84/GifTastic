@@ -1,8 +1,8 @@
 $(document).ready(function() {
 	// keyword array
 	var gifArr = ["Futurama", "The Simpsons", "Family Guy", "Doug", "Rugrats", "Rocko's Modern Life",
-	"Underdog", "Hey Arnold", "Batman Beyond", "Animaniacs", "Archer", "Johnny Quest",
-	"Johnny Bravo"];
+	"Underdog", "Hey Arnold", "Batman Beyond", "Animaniacs", "Archer", "Jonny Quest",
+	"Johnny Bravo", "Samurai Jack"];
 	
 	// loops through array to create buttons; clears div first to prevent repeats
 	function createBtns() {
@@ -55,12 +55,12 @@ $(document).ready(function() {
 	}
 
 	// adds new keyword to array
+	// prevents addition of blank buttons
 	$("#addGif").on("click", function(event) {
 		event.preventDefault();
 
 		var newGif = $("#gif-input").val().trim();
 
-		// prevents addition of blank buttons
 		if (newGif !== "") {
 			$("#gif-input").val("");
 
@@ -70,13 +70,14 @@ $(document).ready(function() {
 	});
 
 	// listens for buttons with .gif-button class
+	// pulls keyword from "data-attr"
 	$(document).on("click", ".gif-button", function() {
 		var keyword = $(this).attr("data-attr");
 
 		getGiphy(keyword);
 	});
 
-	// animates / stills gifs on click
+	// animates / stills gifs on click based on current state
 	$(document).on("click", ".gif", function() {
 		if ($(this).attr("state") === "still") {
 			$(this).attr("state", "animated");
@@ -87,6 +88,7 @@ $(document).ready(function() {
 		}
 	});
 
+	// fun
 	$("#click-me").on("click", function() {
 		var queryURL = "http://api.giphy.com/v1/gifs/3NtY188QaxDdC?api_key=dc6zaTOxFJmzC";
 
