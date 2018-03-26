@@ -19,7 +19,7 @@ $(document).ready(function() {
 
 	// grabs gifs from giphy based on passed keyword parameter
 	function getGiphy(keyword) {
-		var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + keyword + "&limit=10&api_key=dc6zaTOxFJmzC";
+		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + keyword + "&limit=10&api_key=dc6zaTOxFJmzC";
 
 		$("#gifs").empty();
 
